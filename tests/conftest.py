@@ -34,6 +34,8 @@ def base_driver(request):
             browser.config.driver_options = webdriver.ChromeOptions()
         if browser_name == 'firefox':
             browser.config.driver_options = webdriver.FirefoxOptions()
+        browser.config.window_height = config.window_height
+        browser.config.window_width = config.window_width
     else:
         if browser_name == 'chrome':
             options = OptionsChrome()
@@ -55,8 +57,6 @@ def base_driver(request):
             command_executor=f'https://{user}:{password}@selenoid.autotests.cloud/wd/hub', options=options)
         browser.config.driver = driver
 
-    browser.config.window_height = config.window_height
-    browser.config.window_width = config.window_width
     browser.config.base_url = URL
 
     yield browser
