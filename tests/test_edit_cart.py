@@ -28,7 +28,7 @@ def test_edit_items_quantity(driver, session):
         response = session.post('/index.php', params='route=checkout/cart/add', data=data)
         total_price = get_total_cart_price(response=response)
         print(f'{total_price=}')
-        total_price_repr = get_price_repr(float(total_price))
+        total_price_repr = get_price_repr(str(total_price))
         print(f'{total_price_repr=}')
         driver.open('/index.php?route=checkout/cart')
 
@@ -44,7 +44,7 @@ def test_edit_items_quantity(driver, session):
     with allure.step(f'Assert item count in cart after update is {updated_count}'):
         app.cart_page.item_quantity.with_(timeout=7).should(have.value(updated_count))
     new_price = total_price / 2
-    new_price_repr = get_price_repr(float(new_price))
+    new_price_repr = get_price_repr(str(new_price))
 
     with allure.step(f'Assert total price for {updated_count} item(s) is correct'):
         app.cart_page.total_item_price.should(have.text(new_price_repr))

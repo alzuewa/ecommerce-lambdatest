@@ -11,6 +11,10 @@ def get_total_cart_price(response: Response) -> Decimal:
     return Decimal(price)
 
 
+# def get_price_repr(price) -> str:
+#     locale.setlocale(locale.LC_NUMERIC, 'en_US.UTF-8')
+#     return locale.format_string('%.2f', price, grouping=True)
+
 def get_price_repr(price) -> str:
     locale.setlocale(locale.LC_NUMERIC, 'en_US.UTF-8')
-    return locale.format_string('%.2f', price, grouping=True)
+    return locale.localize(price, grouping=True)
