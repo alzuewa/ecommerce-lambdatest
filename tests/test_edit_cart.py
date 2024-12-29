@@ -1,6 +1,8 @@
 import allure
+from allure_commons.types import Severity
 from selene import have, be
 
+from config import config
 from data.data_setup import create_product_request_data
 from data.models import Product
 from data.product_constants import AvailableProductId, ProductName
@@ -8,6 +10,13 @@ from pages.application import app
 from utils.helpers import get_price_repr, get_total_cart_price
 
 
+@allure.epic('Cart')
+@allure.story('Edit cart')
+@allure.feature('Edit items amount in cart')
+@allure.title('Change item quantity in cart')
+@allure.tag('New feature')
+@allure.label('Browser', config.browser_name)
+@allure.severity(Severity.NORMAL)
 def test_edit_items_quantity(driver, session):
     product_name = ProductName.MACBOOK
     count = '2'
@@ -39,6 +48,13 @@ def test_edit_items_quantity(driver, session):
         app.cart_page.total_item_price.should(have.text(new_price_repr))
 
 
+@allure.epic('Cart')
+@allure.story('Edit cart')
+@allure.feature('Clear item position in cart')
+@allure.title('Delete item position from cart completely')
+@allure.tag('Regression')
+@allure.label('Browser', config.browser_name)
+@allure.severity(Severity.CRITICAL)
 def test_clear_cart(driver, session):
     product_name = ProductName.MACBOOK
     product = Product(product_id=AvailableProductId.MACBOOK, quantity='1')
@@ -54,6 +70,13 @@ def test_clear_cart(driver, session):
         app.cart_page.cart_empty_pic.should(be.visible)
 
 
+@allure.epic('Cart')
+@allure.story('Edit cart')
+@allure.feature('Apply discounts to order')
+@allure.title('Apply discounts with invalid codes')
+@allure.tag('Regression')
+@allure.label('Browser', config.browser_name)
+@allure.severity(Severity.CRITICAL)
 def test_add_discounts_to_cart__invalid_codes(driver, session):
     product_name = ProductName.MACBOOK
     product = Product(product_id=AvailableProductId.MACBOOK, quantity='1')

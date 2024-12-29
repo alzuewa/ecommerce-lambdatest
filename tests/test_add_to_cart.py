@@ -1,13 +1,22 @@
 import allure
+from allure_commons.types import Severity
 from selene import be, browser, have
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from config import config
 from data.product_constants import ProductName
 from pages.application import app
 
 
+@allure.epic('Cart')
+@allure.story('Add product to cart')
+@allure.feature('Add product from search page')
+@allure.title('Add product available in stock')
+@allure.tag('Regression')
+@allure.label('Browser', config.browser_name)
+@allure.severity(Severity.CRITICAL)
 def test_add_available_product(driver):
     product_name = ProductName.IPOD_NANO
     increased_count = 2
@@ -35,6 +44,13 @@ def test_add_available_product(driver):
         assert WebDriverWait(driver.driver, timeout=6).until(EC.presence_of_element_located(cart_product))
 
 
+@allure.epic('Cart')
+@allure.story('Add product to cart')
+@allure.feature('Add product from search page')
+@allure.title('Try to add product unavailable in stock')
+@allure.tag('Regression')
+@allure.label('Browser', config.browser_name)
+@allure.severity(Severity.CRITICAL)
 def test_add_unavailable_product(driver):
     product_name = ProductName.PALM_TREO_PRO
     with allure.step('Open Main page'):
