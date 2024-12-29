@@ -1,5 +1,7 @@
 from pydantic_settings import BaseSettings
 
+from utils.env_path_getter import get_resource_path
+
 
 class Config(BaseSettings):
     url: str = 'https://ecommerce-playground.lambdatest.io'
@@ -11,4 +13,4 @@ class Config(BaseSettings):
     window_height: str = '1080'
 
 
-config = Config(_env_file='.env')
+config = Config(_env_file=get_resource_path('.env'))
