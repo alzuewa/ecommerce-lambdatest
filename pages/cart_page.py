@@ -4,6 +4,8 @@ from selene import browser
 
 class CartPage:
     def __init__(self):
+        self.url = '/index.php?route=checkout/cart'
+
         self.cart_empty_pic = browser.element('.fa-exclamation-triangle')
 
         # item summary table locators
