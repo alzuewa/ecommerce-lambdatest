@@ -29,8 +29,11 @@ def test_add_available_product(driver):
     app.item_page.increase_item_count(to_value=increased_count)
     app.item_page.add_to_cart()
 
-    with allure.step('Assert success popup shown on product added'):
+    with allure.step('Assert success toast shown on product added'):
         app.main_page.success_popup.should(be.visible)
+
+    with allure.step('Wait until success toast disappears'):
+        app.main_page.success_popup.with_(timeout=12000).should(be.not_.visible)
 
     app.main_page.open_cart()
 
