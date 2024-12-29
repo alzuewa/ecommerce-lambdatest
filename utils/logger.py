@@ -1,16 +1,14 @@
 import json
 import logging
-import os
 import sys
 from collections.abc import Callable
 from functools import wraps
 
 import allure
 from allure_commons.types import AttachmentType
-from dotenv import load_dotenv
 from requests.exceptions import JSONDecodeError
 
-load_dotenv()
+from config import config
 
 _logger = logging.getLogger(__name__)
 console_formatter = logging.Formatter('\n==> {asctime} - [{levelname}] - {message}', style='{',
@@ -31,7 +29,7 @@ _logger.addHandler(file_handler)
 def logger(func: Callable):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        initial_request_url = os.getenv('URL') + args[1]
+        initial_request_url = config.url + args[1]
         request_params = kwargs.get('params')
         if request_params:
             initial_request_url += f'?{request_params}'

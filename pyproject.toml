@@ -2,7 +2,7 @@
 name = "ecommerce"
 version = "0.1.0"
 description = ""
-authors = ["Albina <albizuewa@gmail.com>"]
+authors = [""]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -13,6 +13,7 @@ python-dotenv = "^1.0.1"
 faker = "^33.1.0"
 allure-pytest = "^2.13.5"
 pytest = "^8.3.4"
+pydantic-settings = "^2.7.0"
 
 
 [build-system]
