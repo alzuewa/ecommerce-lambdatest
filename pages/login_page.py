@@ -4,7 +4,7 @@ from selene import browser
 
 class LoginPage:
     def __init__(self):
-        self.url = url = '/index.php?route=account/login'
+        self.url = '/index.php?route=account/login'
 
         # Login form inputs
         self.email_input = browser.element('#input-email')

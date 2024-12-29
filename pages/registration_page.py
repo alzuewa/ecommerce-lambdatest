@@ -4,7 +4,7 @@ from selene import browser
 
 class RegistrationPage:
     def __init__(self):
-        self.url = url = '/index.php?route=account/register'
+        self.url = '/index.php?route=account/register'
 
         # Registration form inputs
         self.first_name_input = browser.element('#input-firstname')
