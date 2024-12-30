@@ -16,7 +16,6 @@ from pages.application import app
 @allure.feature('Register account')
 @allure.title('[Account] Create. Valid data')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.BLOCKER)
 def test_register__valid_data(driver):
     user = create_user()
@@ -38,7 +37,6 @@ def test_register__valid_data(driver):
 @allure.feature('Register account')
 @allure.title('[Account] Create. Invalid phone number')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.BLOCKER)
 @pytest.mark.parametrize('phone',
                          [
@@ -67,7 +65,6 @@ def test_register__invalid_phone(driver, phone):
 @allure.feature('Register account')
 @allure.title('[Account] Register. Existing user')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.CRITICAL)
 def test_register__existing_user(no_cookie_driver, no_cookie_session):
     session = no_cookie_session
@@ -95,7 +92,6 @@ def test_register__existing_user(no_cookie_driver, no_cookie_session):
 @allure.feature('Login')
 @allure.title('[Account] Login. Valid credentials')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.BLOCKER)
 def test_login__existing_user(no_cookie_driver, no_cookie_session):
     session = no_cookie_session
@@ -120,7 +116,6 @@ def test_login__existing_user(no_cookie_driver, no_cookie_session):
 @allure.feature('Login')
 @allure.title('[Account] Login. Incorrect email and password')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.BLOCKER)
 def test_login__non_existing_user(driver):
     user = create_user()
@@ -140,7 +135,6 @@ def test_login__non_existing_user(driver):
 @allure.feature('Login')
 @allure.title('[Account] Login. Incorrect password')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.BLOCKER)
 def test_login__incorrect_password(no_cookie_driver, no_cookie_session):
     session = no_cookie_session

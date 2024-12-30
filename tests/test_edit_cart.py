@@ -15,7 +15,6 @@ from utils.helpers import get_price_repr, get_total_cart_price
 @allure.feature('Edit items amount in cart')
 @allure.title('[Eit cart] Change item quantity')
 @allure.tag('New feature')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.NORMAL)
 def test_edit_items_quantity(driver, session):
     product_name = ProductName.MACBOOK
@@ -55,7 +54,6 @@ def test_edit_items_quantity(driver, session):
 @allure.feature('Clear item position in cart')
 @allure.title('[Edit cart] Delete the only item')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.CRITICAL)
 def test_clear_cart(driver, session):
     product_name = ProductName.MACBOOK
@@ -77,7 +75,6 @@ def test_clear_cart(driver, session):
 @allure.feature('Apply discounts to order')
 @allure.title('[Edit cart] Apply discounts. Invalid codes')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.CRITICAL)
 def test_add_discounts_to_cart__invalid_codes(driver, session):
     product_name = ProductName.MACBOOK

@@ -15,7 +15,6 @@ from pages.application import app
 @allure.feature('Add product from search page')
 @allure.title('[Add to cart] Item available in stock')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.CRITICAL)
 def test_add_available_product(driver):
     product_name = ProductName.IPOD_NANO
@@ -52,7 +51,6 @@ def test_add_available_product(driver):
 @allure.feature('Add product from search page')
 @allure.title('[Add to cart] Item unavailable in stock')
 @allure.tag('Regression')
-@allure.label('Browser', config.browser_name)
 @allure.severity(Severity.CRITICAL)
 def test_add_unavailable_product(driver):
     product_name = ProductName.PALM_TREO_PRO
