@@ -1,10 +1,7 @@
 from dataclasses import dataclass
 from uuid import uuid4
 
-from dotenv import load_dotenv
 from faker import Faker
-
-load_dotenv()
 
 fake = Faker('en_US')
 
