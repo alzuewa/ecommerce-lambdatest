@@ -2,7 +2,6 @@ import allure
 from allure_commons.types import Severity
 from selene import have, be
 
-from config import config
 from data.data_setup import create_product_request_data
 from data.models import Product
 from data.product_constants import AvailableProductId, ProductName
@@ -13,7 +12,7 @@ from utils.helpers import get_price_repr, get_total_cart_price
 @allure.epic('Cart')
 @allure.story('Edit cart')
 @allure.feature('Edit items amount in cart')
-@allure.title('[Eit cart] Change item quantity')
+@allure.title('[Edit cart] Change item quantity')
 @allure.tag('New feature')
 @allure.severity(Severity.NORMAL)
 def test_edit_items_quantity(driver, session):
