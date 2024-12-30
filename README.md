@@ -65,6 +65,38 @@ To run tests:
 <img title="Build Setup" src="media/setup.png">
 </p> 
 
+## Run tests locally
+
+Local run requires [Python](https://www.python.org/downloads/release/python-3126/)
+and [Poetry](https://python-poetry.org/docs/#installation) installed.
+
+1. Download the project and `cd` to its directory
+2. In project root create virtual environment and install dependencies
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+poetry install --no-root
+```
+
+3. In project root create `.env` file and put `browser_name` into it as it is shown in `.env_example`.
+Possible options: 'chrome', 'firefox'
+
+```nano
+browser_name = 'chrome'
+```
+
+4. Run tests
+
+```bash
+pytest --local-run
+```
+
+When run is finished `app.log` file and `allure-results` directory will be generated in project root. If Allure Report is [installed](https://allurereport.org/docs/install/), a report can be generated
+```bash
+allure serve allure-results
+```
+
 ## Allure Report
 Clicking on the Allure Report link we get a full overview of finished run.
 It includes:
