@@ -21,16 +21,16 @@
 
 ## Technology Stack
 <p  align="center">
-    <code><img width="5%" title="Python" src="media/python.svg"></code>
-    <code><img width="5%" title="Pytest" src="media/pytest.svg"></code>
-    <code><img width="5%" title="Selene" src="media/selene.png"></code>
-    <code><img width="5%" title="Selenium" src="media/selenium.png"></code>
-    <code><img width="5%" title="Jenkins" src="media/jenkins.svg"></code>
-    <code><img width="5%" title="Selenoid" src="media/selenoid.svg"></code>
-    <code><img width="5%" title="Allure Report" src="media/allure.svg"></code>
-    <code><img width="5%" title="Allure TestOps" src="media/allure_testops.svg"></code>
-    <code><img width="5%" title="PyCharm" src="media/pycharm.svg"></code>
-    <code><img width="5%" title="Poetry" src="media/poetry.svg"></code>
+    <code><img width="5%" title="Python" src="media/icons/python.svg"></code>
+    <code><img width="5%" title="Pytest" src="media/icons/pytest.svg"></code>
+    <code><img width="5%" title="Selene" src="media/icons/selene.png"></code>
+    <code><img width="5%" title="Selenium" src="media/icons/selenium.png"></code>
+    <code><img width="5%" title="Jenkins" src="media/icons/jenkins.svg"></code>
+    <code><img width="5%" title="Selenoid" src="media/icons/selenoid.svg"></code>
+    <code><img width="5%" title="Allure Report" src="media/icons/allure.svg"></code>
+    <code><img width="5%" title="Allure TestOps" src="media/icons/allure_testops.svg"></code>
+    <code><img width="5%" title="PyCharm" src="media/icons/pycharm.svg"></code>
+    <code><img width="5%" title="Poetry" src="media/icons/poetry.svg"></code>
 </p>
 
 ## Covered Functionality 
@@ -60,7 +60,7 @@ To run tests:
 2. Choose browser from dropdown menu
 3. Choose browser version from dropdown menu
 4. Click on `Build`
-5. After build finished, links to Allure Report and Allure TestOps will be shown next to the job
+5. After build is finished, links to Allure Report and Allure TestOps will be shown next to the job
 <p align="center">
 <img title="Build Setup" src="media/setup.png">
 </p> 
@@ -80,10 +80,16 @@ It includes:
 <p align="center">
     <img title="Tests" src="media/tests.png">
 </p>
+
 - Detailed steps and attachments to each test (logs, API responses, screenshots and videos)
 <p align="center">
     <img title="Attachments" src="media/attachments.png">
 </p>  
+
+- In case of test failure, it can be fast identified where the problem is
+<p align="center">
+    <img title="Fail" src="media/fail.png">
+</p> 
 
 ## Allure TestOps Integration
 ###  [Dashboard](https://allure.autotests.cloud/project/4542/dashboards)

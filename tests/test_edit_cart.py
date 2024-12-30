@@ -25,9 +25,7 @@ def test_edit_items_quantity(driver, session):
     with allure.step(f'Add {product_name} to cart and open Cart'):
         response = session.post('/index.php', params='route=checkout/cart/add', data=data)
         total_price = get_total_cart_price(response=response)
-        print(f'{total_price=}')
         total_price_repr = get_price_repr(float(total_price))
-        print(f'{total_price_repr=}')
         driver.open(app.cart_page.url)
 
     with allure.step(f'Assert item count in cart is {count}'):
