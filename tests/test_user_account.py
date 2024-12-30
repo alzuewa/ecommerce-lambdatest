@@ -6,7 +6,6 @@ import pytest
 from allure_commons.types import Severity
 from selene import be, have
 
-from config import config
 from data.data_setup import create_user, create_user_request_data
 from pages.application import app
 
