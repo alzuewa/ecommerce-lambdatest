@@ -1,4 +1,5 @@
 import json
+import locale
 from decimal import Decimal
 
 from requests import Response
@@ -11,4 +12,5 @@ def get_total_cart_price(response: Response) -> Decimal:
 
 
 def get_price_repr(price) -> str:
-    return f'{price:,}'
+    locale.setlocale(locale.LC_NUMERIC, 'en_US')
+    return locale.format_string(f='%.2f', val=price, grouping=True)
