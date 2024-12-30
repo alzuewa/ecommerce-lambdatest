@@ -129,7 +129,7 @@ It includes:
     <img title="Allure TestOps Dashboard" src="media/testops_dashboard.png">
 </p>
 
-Allure TestOps is integrated with Jenkins, and test results are shown in the dashboard. Automated tests are also can be run from Allure TestOps directly. 
+Allure TestOps is integrated with Jenkins, and test results are shown in the dashboard. Automated tests can also be run from Allure TestOps directly. 
 
 ---
 
