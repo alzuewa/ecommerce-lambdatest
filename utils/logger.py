@@ -42,11 +42,11 @@ def logger(func: Callable):
         try:
             allure.attach(
                 body=json.dumps(result.json(), indent=4, ensure_ascii=True), name="Response",
-                attachment_type=AttachmentType.JSON, extension="json"
+                attachment_type=AttachmentType.JSON, extension=".json"
             )
         except JSONDecodeError:
             allure.attach(
-                body=result.text, name="Response", attachment_type=AttachmentType.TEXT, extension="txt"
+                body=result.text, name="Response", attachment_type=AttachmentType.TEXT, extension=".txt"
             )
         _logger.info(f'Request URL:: {initial_request_url}')
         _logger.info(f'Request method:: {request_method}')
