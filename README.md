@@ -19,18 +19,20 @@
 >
 > ➠ [Test Run Record Example](#test-run-record-example)
 
-## Technology Stack
+## Technology Stack and Instruments
 <p  align="center">
-    <code><img width="7%" title="Python" src="media/icons/python.svg"></code>
-    <code><img width="7%" title="Pytest" src="media/icons/pytest.svg"></code>
-    <code><img width="7%" title="Selene" src="media/icons/selene.png"></code>
-    <code><img width="7%" title="Selenium" src="media/icons/selenium.png"></code>
-    <code><img width="7%" title="Jenkins" src="media/icons/jenkins.svg"></code>
-    <code><img width="7%" title="Selenoid" src="media/icons/selenoid.svg"></code>
-    <code><img width="7%" title="Allure Report" src="media/icons/allure.svg"></code>
-    <code><img width="7%" title="Allure TestOps" src="media/icons/allure_testops.svg"></code>
-    <code><img width="7%" title="PyCharm" src="media/icons/pycharm.svg"></code>
-    <code><img width="7%" title="Poetry" src="media/icons/poetry.svg"></code>
+    <code><img width="5%" title="Python" src="media/icons/python.svg"></code>
+    <code><img width="5%" title="Pytest" src="media/icons/pytest.svg"></code>
+    <code><img width="5%" title="Selene" src="media/icons/selene.png"></code>
+    <code><img width="5%" title="Selenium" src="media/icons/selenium.png"></code>
+    <code><img width="5%" title="Jenkins" src="media/icons/jenkins.svg"></code>
+    <code><img width="5%" title="Selenoid" src="media/icons/selenoid.svg"></code>
+    <code><img width="5%" title="Allure Report" src="media/icons/allure.svg"></code>
+    <code><img width="5%" title="Allure TestOps" src="media/icons/allure_testops.svg"></code>
+    <code><img width="5%" title="PyCharm" src="media/icons/pycharm.svg"></code>
+    <code><img width="5%" title="Poetry" src="media/icons/poetry.svg"></code>
+    <code><img width="5%" title="Chrome" src="media/icons/chrome.svg"></code>
+    <code><img width="5%" title="Poetry" src="media/icons/firefox.svg"></code>
 </p>
 
 ## Covered Functionality 
