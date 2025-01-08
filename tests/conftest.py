@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as OptionsChrome
 from selenium.webdriver.firefox.options import Options as OptionsFirefox
 
-from config import config
+from config.test_run_config import config
 from utils import attach
 from utils.session import ApiSession
 
@@ -25,7 +25,7 @@ def get_session_cookies():
 
 
 @pytest.fixture(scope='function')
-def base_driver(request):
+def driver_config_setup(request):
     browser_name = config.browser_name
     browser_version = config.browser_version
     local_run = request.config.getoption('--local-run')
@@ -37,7 +37,7 @@ def base_driver(request):
     else:
         if browser_name == 'chrome':
             options = OptionsChrome()
-        if browser_name == 'firefox':
+        else:
             options = OptionsFirefox()
         selenoid_capabilities = {
             "browserName": browser_name,
@@ -51,8 +51,9 @@ def base_driver(request):
 
         user = config.selenoid_login
         password = config.selenoid_password
+        selenoid_url = config.selenoid_url
         driver = webdriver.Remote(
-            command_executor=f'https://{user}:{password}@selenoid.autotests.cloud/wd/hub', options=options)
+            command_executor=f'https://{user}:{password}@{selenoid_url}', options=options)
         browser.config.driver = driver
 
     browser.config.window_height = config.window_height
@@ -69,27 +70,29 @@ def base_driver(request):
 
     browser.quit()
 
+
 @pytest.fixture(scope='function')
-def driver(base_driver, get_session_cookies):
-    base_driver.open('/')
-    base_driver.driver.delete_all_cookies()
+def driver_with_cookies(driver_config_setup, get_session_cookies):
+    driver_config_setup.open('/')
+    driver_config_setup.driver.delete_all_cookies()
     for name, value in get_session_cookies.items():
-        base_driver.driver.add_cookie(dict(name=name, value=value))
+        driver_config_setup.driver.add_cookie(dict(name=name, value=value))
 
-    yield base_driver
-
-
-@pytest.fixture(scope='function')
-def no_cookie_driver(base_driver):
-    yield base_driver
+    yield driver_config_setup
 
 
 @pytest.fixture(scope='function')
-def session(get_session_cookies):
+def no_cookie_driver(driver_config_setup):
+    yield driver_config_setup
+
+
+@pytest.fixture(scope='function')
+def common_session(get_session_cookies):
     cookies = cookiejar_from_dict(get_session_cookies)
     session = ApiSession(base_url=URL, cookies=cookies)
 
     yield session
+
 
 @pytest.fixture(scope='function')
 def no_cookie_session():
