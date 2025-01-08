@@ -8,10 +8,4 @@ class ProductName(StrEnum):
 
 
 class AvailableProductId(StrEnum):
-    IPOD_NANO = '36'
     MACBOOK = '43'
-    PALM_TREO_PRO = '29'
-
-
-class UnvailableProductId(StrEnum):
-    PALM_TREO_PRO = '29'
