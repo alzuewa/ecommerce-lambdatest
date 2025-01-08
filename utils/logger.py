@@ -8,7 +8,7 @@ import allure
 from allure_commons.types import AttachmentType
 from requests.exceptions import JSONDecodeError
 
-from config import config
+from config.test_run_config import config
 
 _logger = logging.getLogger(__name__)
 console_formatter = logging.Formatter('\n==> {asctime} - [{levelname}] - {message}', style='{',
