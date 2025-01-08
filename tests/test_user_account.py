@@ -4,7 +4,7 @@ import string
 import allure
 import pytest
 from allure_commons.types import Severity
-from selene import be, have
+from selene import be
 
 from data.data_setup import create_user, create_user_request_data
 from pages.application import app
@@ -16,9 +16,9 @@ from pages.application import app
 @allure.title('[Account] Create. Valid data')
 @allure.tag('Regression')
 @allure.severity(Severity.BLOCKER)
-def test_register__valid_data(driver):
+def test_register__valid_data(driver_with_cookies):
     user = create_user()
-    driver.open(app.registration_page.url)
+    driver_with_cookies.open(app.registration_page.url)
     app.registration_page.register_user(
         first_name=user.firstname,
         last_name=user.lastname,
@@ -44,9 +44,9 @@ def test_register__valid_data(driver):
                              ''.join(random.choice(string.digits) for _ in range(33))
                          ]
                          )
-def test_register__invalid_phone(driver, phone):
+def test_register__invalid_phone(driver_with_cookies, phone):
     user = create_user()
-    driver.open(app.registration_page.url)
+    driver_with_cookies.open(app.registration_page.url)
     app.registration_page.register_user(
         first_name=user.firstname,
         last_name=user.lastname,
@@ -66,12 +66,11 @@ def test_register__invalid_phone(driver, phone):
 @allure.tag('Regression')
 @allure.severity(Severity.CRITICAL)
 def test_register__existing_user(no_cookie_driver, no_cookie_session):
-    session = no_cookie_session
     user = create_user()
     data = create_user_request_data(user)
 
     with allure.step(f'Create user with API request'):
-        session.post('/index.php', params='route=account/register', data=data)
+        no_cookie_session.post('/index.php', params='route=account/register', data=data)
 
     no_cookie_driver.open(app.registration_page.url)
     app.registration_page.register_user(
@@ -93,12 +92,11 @@ def test_register__existing_user(no_cookie_driver, no_cookie_session):
 @allure.tag('Regression')
 @allure.severity(Severity.BLOCKER)
 def test_login__existing_user(no_cookie_driver, no_cookie_session):
-    session = no_cookie_session
     user = create_user()
     data = create_user_request_data(user)
 
     with allure.step(f'Create user with API request'):
-        session.post('/index.php', params='route=account/register', data=data)
+        no_cookie_session.post('/index.php', params='route=account/register', data=data)
 
     no_cookie_driver.open(app.login_page.url)
     app.login_page.login_user(
@@ -107,7 +105,7 @@ def test_login__existing_user(no_cookie_driver, no_cookie_session):
     )
 
     with allure.step('Assert user account page opened'):
-        app.breadcrumb_bar.active_breadcrumb_item.should(have.exact_text('Account'))
+        assert app.breadcrumb_bar.get_active_breadcrumb_text() == 'Account'
 
 
 @allure.epic('User account')
@@ -116,10 +114,10 @@ def test_login__existing_user(no_cookie_driver, no_cookie_session):
 @allure.title('[Account] Login. Incorrect email and password')
 @allure.tag('Regression')
 @allure.severity(Severity.BLOCKER)
-def test_login__non_existing_user(driver):
+def test_login__non_existing_user(driver_with_cookies):
     user = create_user()
 
-    driver.open(app.login_page.url)
+    driver_with_cookies.open(app.login_page.url)
     app.login_page.login_user(
         email=user.email,
         password=user.password
@@ -136,12 +134,11 @@ def test_login__non_existing_user(driver):
 @allure.tag('Regression')
 @allure.severity(Severity.BLOCKER)
 def test_login__incorrect_password(no_cookie_driver, no_cookie_session):
-    session = no_cookie_session
     user = create_user()
     data = create_user_request_data(user)
 
     with allure.step(f'Create user with API request'):
-        session.post('/index.php', params='route=account/register', data=data)
+        no_cookie_session.post('/index.php', params='route=account/register', data=data)
 
     no_cookie_driver.open(app.login_page.url)
     app.login_page.login_user(

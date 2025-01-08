@@ -4,9 +4,9 @@ from selene import have, be
 
 from data.data_setup import create_product_request_data
 from data.models import Product
-from data.product_constants import AvailableProductId, ProductName
+from data.product_strings import AvailableProductId, ProductName
 from pages.application import app
-from utils.helpers import get_price_repr, get_total_cart_price
+from utils.price_helpers import get_price_repr, get_total_cart_price
 
 
 @allure.epic('Cart')
@@ -15,7 +15,7 @@ from utils.helpers import get_price_repr, get_total_cart_price
 @allure.title('[Edit cart] Change item quantity')
 @allure.tag('New feature')
 @allure.severity(Severity.NORMAL)
-def test_edit_items_quantity(driver, session):
+def test_edit_items_quantity(driver_with_cookies, common_session):
     product_name = ProductName.MACBOOK
     count = '2'
     updated_count = '1'
@@ -23,10 +23,10 @@ def test_edit_items_quantity(driver, session):
     data = create_product_request_data(product)
 
     with allure.step(f'Add {product_name} to cart and open Cart'):
-        response = session.post('/index.php', params='route=checkout/cart/add', data=data)
+        response = common_session.post('/index.php', params='route=checkout/cart/add', data=data)
         total_price = get_total_cart_price(response=response)
         total_price_repr = get_price_repr(float(total_price))
-        driver.open(app.cart_page.url)
+        app.cart_page.open_cart_page()
 
     with allure.step(f'Assert item count in cart is {count}'):
         app.cart_page.item_quantity.with_(timeout=7).should(have.value(count))
@@ -52,14 +52,14 @@ def test_edit_items_quantity(driver, session):
 @allure.title('[Edit cart] Delete the only item')
 @allure.tag('Regression')
 @allure.severity(Severity.CRITICAL)
-def test_clear_cart(driver, session):
+def test_clear_cart(driver_with_cookies, common_session):
     product_name = ProductName.MACBOOK
     product = Product(product_id=AvailableProductId.MACBOOK, quantity='1')
     data = create_product_request_data(product)
 
     with allure.step(f'Add {product_name} to cart and open Cart'):
-        session.post('/index.php', params='route=checkout/cart/add', data=data)
-        driver.open(app.cart_page.url)
+        common_session.post('/index.php', params='route=checkout/cart/add', data=data)
+        app.cart_page.open_cart_page()
 
     app.cart_page.delete_the_only_item()
 
@@ -73,7 +73,7 @@ def test_clear_cart(driver, session):
 @allure.title('[Edit cart] Apply discounts. Invalid codes')
 @allure.tag('Regression')
 @allure.severity(Severity.CRITICAL)
-def test_add_discounts_to_cart__invalid_codes(driver, session):
+def test_add_discounts_to_cart__invalid_codes(driver_with_cookies, common_session):
     product_name = ProductName.MACBOOK
     product = Product(product_id=AvailableProductId.MACBOOK, quantity='1')
     data = create_product_request_data(product)
@@ -81,8 +81,8 @@ def test_add_discounts_to_cart__invalid_codes(driver, session):
     voucher_code = '123'
 
     with allure.step(f'Add {product_name} to cart and open Cart'):
-        session.post('/index.php', params='route=checkout/cart/add', data=data)
-        driver.open(app.cart_page.url)
+        common_session.post('/index.php', params='route=checkout/cart/add', data=data)
+        app.cart_page.open_cart_page()
 
     app.cart_page.apply_coupon(code=coupon_code)
 

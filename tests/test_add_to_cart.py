@@ -1,12 +1,8 @@
 import allure
 from allure_commons.types import Severity
-from selene import be, browser, have
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+from selene import be, have
 
-from config import config
-from data.product_constants import ProductName
+from data.product_strings import ProductName
 from pages.application import app
 
 
@@ -16,12 +12,11 @@ from pages.application import app
 @allure.title('[Add to cart] Item available in stock')
 @allure.tag('Regression')
 @allure.severity(Severity.CRITICAL)
-def test_add_available_product(driver):
+def test_add_available_product(driver_with_cookies):
     product_name = ProductName.IPOD_NANO
     increased_count = 2
 
-    with allure.step('Open Main page'):
-        browser.open(app.main_page.url)
+    app.main_page.open_main_page()
 
     app.main_page.search_product(product=product_name)
     app.goods_page.choose_item(item_name=product_name)
@@ -32,7 +27,7 @@ def test_add_available_product(driver):
         app.main_page.success_popup.should(be.visible)
 
     with allure.step('Wait until success toast disappears'):
-        app.main_page.success_popup.with_(timeout=12000).should(be.not_.visible)
+        app.main_page.success_popup.with_(timeout=12).should(be.not_.visible)
 
     app.main_page.open_cart()
 
@@ -40,10 +35,9 @@ def test_add_available_product(driver):
         app.main_page.cart_drawer.should(be.visible)
 
     app.main_page.edit_cart()
-    cart_product = By.LINK_TEXT, product_name
 
     with allure.step('Assert added product present in cart'):
-        assert WebDriverWait(driver.driver, timeout=6).until(EC.presence_of_element_located(cart_product))
+        assert app.cart_page.get_product_link(product_name=product_name)
 
 
 @allure.epic('Cart')
@@ -52,10 +46,9 @@ def test_add_available_product(driver):
 @allure.title('[Add to cart] Item unavailable in stock')
 @allure.tag('Regression')
 @allure.severity(Severity.CRITICAL)
-def test_add_unavailable_product(driver):
+def test_add_unavailable_product(driver_with_cookies):
     product_name = ProductName.PALM_TREO_PRO
-    with allure.step('Open Main page'):
-        browser.open(app.main_page.url)
+    app.main_page.open_main_page()
 
     app.main_page.search_product(product=product_name)
     app.goods_page.choose_item(item_name=product_name)
