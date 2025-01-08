@@ -5,6 +5,7 @@ from utils.env_path_getter import get_resource_path
 
 class Config(BaseSettings):
     url: str = 'https://ecommerce-playground.lambdatest.io'
+    selenoid_url: str = 'selenoid.autotests.cloud/wd/hub'
     browser_name: str
     browser_version: str = '125.0'
     selenoid_login: str
