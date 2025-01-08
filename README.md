@@ -19,7 +19,7 @@
 >
 > ➠ [Test Run Record Example](#test-run-record-example)
 
-## Technology Stack and Instruments
+## Technology Stack and Tools
 <p  align="center">
     <code><img width="5%" title="Python" src="media/icons/python.svg"></code>
     <code><img width="5%" title="Pytest" src="media/icons/pytest.svg"></code>
@@ -31,26 +31,29 @@
     <code><img width="5%" title="Allure TestOps" src="media/icons/allure_testops.svg"></code>
     <code><img width="5%" title="PyCharm" src="media/icons/pycharm.svg"></code>
     <code><img width="5%" title="Poetry" src="media/icons/poetry.svg"></code>
-    <code><img width="5%" title="Chrome" src="media/icons/chrome.svg"></code>
-    <code><img width="5%" title="Poetry" src="media/icons/firefox.svg"></code>
 </p>
 
 ## Covered Functionality 
 #### UI tests were designed to check the following scenarios:
 
-* ✅ Register new user with valid data
-* ✅ Successful login
-* ✅ Register new user with invalid phone numbers
-* ✅ Register existing user
-* ✅ Login with invalid email and password
-* ✅ Login with invalid password
+* ✅Registration and login tests
+  * ✅ Positive:
+    * ☑️ Register new user with valid data
+    * ☑️ Successful login
+  * ✅ Negative:
+    * ☑️ Register new user with invalid phone numbers
+    * ☑️ Register existing user
+    * ☑️ Login with invalid email and password
+    * ☑️ Login with invalid password
 
-
-* ✅ Available product can be added to the cart
-* ✅ Unavailable product can not be added to the cart
-* ✅ User can change item quantity in the cart
-* ✅ User can delete item position from the cart
-* ✅ User can not apply invalid discount codes
+* ✅ Cart tests
+  * ✅ Positive:
+    * ☑️ Available product can be added to the cart
+    * ☑️ User can change item quantity in the cart
+    * ☑️ User can delete item position from the cart
+  * ✅ Negative:
+    * ☑️ Unavailable product can not be added to the cart
+    * ☑️ User can not apply invalid discount codes
 
 
 ## Run tests in Jenkins
@@ -100,6 +103,9 @@ allure serve allure-results
 ```
 
 ## Allure Report
+
+[Link to Allure report](https://jenkins.autotests.cloud/job/alz-ecommerce-testlambda/60/allure/)
+
 Clicking on the Allure Report link we get a full overview of finished run.
 It includes:
 - Summary
