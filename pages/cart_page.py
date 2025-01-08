@@ -1,5 +1,8 @@
 from allure import step
 from selene import browser
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class CartPage:
@@ -27,6 +30,10 @@ class CartPage:
         self.apply_voucher_button = browser.element('[value="Apply Gift Certificate"]')
         self.invalid_voucher_banner = browser.element('#collapse-voucher .alert-danger')
         self.close_voucher_banner = browser.element('#collapse-voucher .close')
+
+    @step('Open cart page')
+    def open_cart_page(self):
+        browser.open(self.url)
 
     @step('Clear product count field')
     def clear_product_count_field(self):
@@ -60,3 +67,8 @@ class CartPage:
     @step('Close voucher banner')
     def close_voucher_banner(self):
         self.close_voucher_banner.click()
+
+    @step('Search link for product: {product_name}')
+    def get_product_link(self, product_name: str):
+        cart_product = By.LINK_TEXT, product_name
+        return WebDriverWait(browser.driver, timeout=6).until(ec.presence_of_element_located(cart_product))

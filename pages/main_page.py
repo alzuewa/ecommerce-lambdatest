@@ -13,6 +13,10 @@ class MainPage:
         self.edit_cart_button = browser.element('[data-id="217850"] .btn-primary')
         self.search_input = browser.element('#entry_217822 [name="search"]')
 
+    @step('Open main page')
+    def open_main_page(self):
+        browser.open(self.url)
+
     @step('Enter search query: {product}')
     def search_product(self, product: str):
         self.search_input.type(product).submit()

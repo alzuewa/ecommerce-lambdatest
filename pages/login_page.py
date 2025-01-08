@@ -16,7 +16,6 @@ class LoginPage:
 
         self.add_new_user_button = browser.element('//*[text()="New Customer"]/..//*[text()="Continue"]')
 
-
     @step('Fill in login form')
     def login_user(self, email: str, password: str):
         self.email_input.type(email)
