@@ -5,7 +5,7 @@
 
 ## Contents
 
-> ➠ [Technology Stack](#technology-stack)
+> ➠ [Technology Stack](#technology-stack-and-tools)
 >
 > ➠ [Covered Functionality](#covered-functionality)
 >
